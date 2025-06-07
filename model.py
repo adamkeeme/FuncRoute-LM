@@ -1,4 +1,6 @@
-from transformers import GPT2Config, GPT2LMHeadModel
+# build_and_save_model.py
+import os
+from transformers import GPT2Config, GPT2LMHeadModel, GPT2Tokenizer
 
 def create_model(vocab_size=50257):
     """
@@ -27,11 +29,38 @@ def create_model(vocab_size=50257):
         bos_token_id=50256,
         eos_token_id=50256,
     )
+    print("Model configuration created.")
     model = GPT2LMHeadModel(config)
     return model
 
-if __name__ == '__main__':
-    # This will print the exact number of parameters when you run the script
+def main():
+    """
+    Main function to build, verify, and save the model and tokenizer.
+    """
+    output_dir = "./gpt2-100m-custom"
+    
+    print(f"Creating a new model to be saved in: {output_dir}")
+
+    # Create the model from scratch
     model = create_model()
     num_params = model.num_parameters()
     print(f"Model created with {num_params/1e6:.2f}M parameters.")
+
+    # A model is useless without its tokenizer. We'll download and save the standard GPT-2 tokenizer.
+    print("Downloading and saving the standard GPT-2 tokenizer.")
+    tokenizer = GPT2Tokenizer.from_pretrained("gpt2")
+
+    # Create the output directory if it doesn't exist
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
+
+    # Save the model and tokenizer to the specified directory
+    print(f"Saving model and tokenizer to {output_dir}...")
+    model.save_pretrained(output_dir)
+    tokenizer.save_pretrained(output_dir)
+    
+    print("Script finished successfully.")
+
+
+if __name__ == '__main__':
+    main()

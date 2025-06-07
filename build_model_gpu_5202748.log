@@ -1,0 +1,11 @@
+WARNING: The default mpi should no longer be used for compiling programs. We are in the process of updating the default MPI or getting rid of defaults for the MPI module. Until that time, we recommend that you use one of the following MPI modules `module load mpi/openmpi-4.1.7-gcc-10.4.0` or  `module load mpi/openmpi-4.1.6rc2-gcc-10.4.0`.
+Starting Python script on a GPU node...
+Job running on node: qgpu0202
+GPU allocated: 0
+Creating a new model to be saved in: ./gpt2-100m-custom
+Model configuration created.
+Model created with 110.26M parameters.
+Downloading and saving the standard GPT-2 tokenizer.
+Saving model and tokenizer to ./gpt2-100m-custom...
+Script finished successfully.
+Slurm job finished.
