@@ -1,4 +1,4 @@
-# build_and_save_model.py
+# model.py
 import os
 from transformers import GPT2Config, GPT2LMHeadModel, GPT2Tokenizer
 
