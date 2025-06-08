@@ -66,7 +66,8 @@ def load_train_data_in_query_anwer_pair(how_many, train_dataset_file, functions_
         for fc in selected_funcs:
             input_prompt += json.dumps(fc, ensure_ascii=False) + "\n"
 
-        input_prompt += "\nAnswer:"
+        input_prompt += "\nQuery:\n" +  d["user_request"]
+        input_prompt += "\n\nAnswer:"
 
         print(input_prompt)
 
@@ -79,7 +80,7 @@ def load_train_data_in_query_anwer_pair(how_many, train_dataset_file, functions_
 
 
 
-dataset = load_train_data_in_query_anwer_pair(2, "D:/shawn_workspace/MSAI337_NLP/train_dataset.jsonl", "D:/shawn_workspace/MSAI337_NLP/functions_with_params.json")
+dataset = load_train_data_in_query_anwer_pair(1, "D:/shawn_workspace/MSAI337_NLP/train_dataset.jsonl", "D:/shawn_workspace/MSAI337_NLP/functions_with_params.json")
 print(dataset)
 
 
@@ -97,6 +98,9 @@ Function catalog:
 {"name": "make_lowpass", "description": "Creates a low-pass filter\n\n>>> filter = make_lowpass(1000, 48000)\n>>> filter.a_coeffs + filter.b_coeffs  # doctest: +NORMALIZE_WHITESPACE\n[1.0922959556412573, -1.9828897227476208, 0.9077040443587427, 0.004277569313094809,\n 0.008555138626189618, 0.004277569313094809]", "parameters": {"frequency": "int", "samplerate": "int", "q_factor": "float – 1 / sqrt(2)"}}
 {"name": "solution", "description": "Returns the largest palindrome made from the product of two 3-digit\nnumbers which is less than n.\n\n>>> solution(20000)\n19591\n>>> solution(30000)\n29992\n>>> solution(40000)\n39893\n>>> solution(10000)\nTraceback (most recent call last):\n    ...\nValueError: That number is larger than our acceptable range.", "parameters": {"n": "int – 998001"}}
 {"name": "encode", "description": ">>> encode(\"myname\")\n[13, 25, 14, 1, 13, 5]", "parameters": {"plain": "str"}}
+
+Query:
+I need to create a lowpass filter with a cutoff frequency of 5000 Hz and a sampling rate of 44100 Hz. Can you help generate that?
 
 Answer:
 {'name': 'make_lowpass', 'arguments': {'frequency': 5000, 'samplerate': 44100, 'q_factor': 0.7071067811865476}}
