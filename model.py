@@ -10,7 +10,7 @@ def create_model(vocab_size=50257):
         vocab_size=vocab_size,
         n_positions=1024,
         n_embd=768,
-        n_layer=10,  # Reduced from 12 to bring params to ~100M
+        n_layer=10,  # reduced from 12 to bring params to 100M
         n_head=12,
         n_inner=None,
         activation_function="gelu_new",
@@ -35,7 +35,7 @@ def create_model(vocab_size=50257):
 
 def main():
     """
-    Main function to build, verify, and save the model and tokenizer.
+    main function to build, verify, and save the model and tokenizer.
     """
     output_dir = "./gpt2-100m-custom"
     
